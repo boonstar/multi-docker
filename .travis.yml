@@ -18,8 +18,8 @@ after_success:
     - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
     
     # Take those images, push to docker hub
-    - docker push diamond/fang/multi-client
-    - docker push diamond/fang/multi-nginx
-    - docker push diamond/fang/multi-server
-    - docker push diamond/fang/multi-worker
+    - docker push diamondfang/multi-client
+    - docker push diamondfang/multi-nginx
+    - docker push diamondfang/multi-server
+    - docker push diamondfang/multi-worker
     
