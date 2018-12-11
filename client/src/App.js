@@ -10,6 +10,7 @@ class App extends Component {
         <Router>
             <div className="App">
                 <header>
+                    <h1>BBillionaire</h1>
                     <Link to="/">HomeERASMUS</Link>
                     <Link to="/otherpage">Other Page</Link>
                 </header>
