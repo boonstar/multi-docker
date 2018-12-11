@@ -1,0 +1,25 @@
+sudo: required
+services:
+    - docker
+    
+before_install:
+    - docker build -t diamondfang/react-test -f ./client/Dockerfile.dev ./client
+
+script:
+    - docker run diamondfang/react-test npm test -- --coverage
+    
+after_success:
+    - docker build -t diamondfang/multi-client ./client
+    - docker build -t diamondfang/multi-nginx ./nginx
+    - docker build -t diamondfang/multi-server ./server
+    - docker build -t diamondfang/multi-worker ./worker
+    
+    # Log in to docker CLI
+    - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+    
+    # Take those images, push to docker hub
+    - docker push diamond/fang/multi-client
+    - docker push diamond/fang/multi-nginx
+    - docker push diamond/fang/multi-server
+    - docker push diamond/fang/multi-worker
+    
